@@ -1,0 +1,15 @@
+# Dependencies directory
+node_modules/
+
+# Logs
+npm-debug.log*
+logs
+*.log
+
+api.http
+
+# dotenv
+# .env
+.env.test
+
+public/
