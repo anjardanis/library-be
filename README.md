@@ -1,4 +1,4 @@
-# Lib'rary API Anjar 6
+# Lib'rary API Anjar 7
 *RESTful API for Lib'rary*
 
 
