@@ -32,9 +32,9 @@ jobs:
 
       - name: Docker Build and login
         run: |
-          export DOCKER_USERNAME=$(aws ssm get-parameter --name DOCKER_HUB_USERNAME --with-decryption --query Parameter.Value --output text)
-          export DOCKER_PASSWORD=$(aws ssm get-parameter --name DOCKER_HUB_USERNAME --with-decryption --query Parameter.Value --output text)
-          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          export DOCKER_HUB_USERNAME=$(aws ssm get-parameter --name DOCKER_HUB_USERNAME --with-decryption --query Parameter.Value --output text)
+          export DOCKER_HUB_PASSWORD=$(aws ssm get-parameter --name DOCKER_HUB_PASSWORD --with-decryption --query Parameter.Value --output text)
+          docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
           docker build --build-arg START_SCRIPT=start --build-arg PORT=5000 -t anjardanis/library-fe .
           docker push anjardanis/library-fe
 
