@@ -3,7 +3,7 @@
     "username": "backend",
     "password": "anjar",
     "database": "library",
-    "host": "127.0.0.1",
+    "host": "172.31.28.61",
     "dialect": "mysql"
   },
   "test": {
