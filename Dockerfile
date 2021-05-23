@@ -14,7 +14,7 @@ COPY . .
 
 RUN npm install
 
-# RUN npm install -g sequelize-cli
+RUN npm install -g sequelize-cli
 
 # RUN sequelize db:migrate all
 
