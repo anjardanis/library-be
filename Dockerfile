@@ -12,11 +12,11 @@ WORKDIR /home/node/app
 
 RUN npm install
 
-RUN npm install -g sequelize-cli
+# RUN npm install -g sequelize-cli
 
-RUN sequelize db:migrate all
+# RUN sequelize db:migrate all
 
-RUN sequelize db:seed:all
+# RUN sequelize db:seed:all
 
 EXPOSE $PORT
 
