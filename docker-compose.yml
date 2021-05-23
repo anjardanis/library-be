@@ -6,3 +6,15 @@ services:
      stdin_open: true
      ports:
        - 5000:5000
+  db:
+     image: mysql:5.7
+     volumes:
+       - db_data:/var/lib/mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: anjar
+       MYSQL_DATABASE: library
+       MYSQL_USER: backend
+       MYSQL_PASSWORD: anjar
+volumes:
+  db_data: {}
