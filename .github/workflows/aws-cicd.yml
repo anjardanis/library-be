@@ -43,7 +43,7 @@ jobs:
           touch finaldumbways.pem
           aws ssm get-parameter --name /ula/stage/secret/aws/KEY_PAIR --with-decryption --query Parameter.Value --output text > finaldumbways.pem
           chmod 400 finaldumbways.pem
-          ssh -o 'StrictHostKeyChecking no' -i "finaldumbways.pem" ec2-user@54.167.66.125 "docker-compose down"
-          ssh -o 'StrictHostKeyChecking no' -i "finaldumbways.pem" ec2-user@54.167.66.125 "docker rmi anjardanis/library-be || true"
-          ssh -o 'StrictHostKeyChecking no' -i "finaldumbways.pem" ec2-user@54.167.66.125 "docker-compose up -d"
+          ssh -o 'StrictHostKeyChecking no' -i "finaldumbways.pem" ec2-user@3.90.102.58 "docker-compose down"
+          ssh -o 'StrictHostKeyChecking no' -i "finaldumbways.pem" ec2-user@3.90.102.58 "docker rmi anjardanis/library-be || true"
+          ssh -o 'StrictHostKeyChecking no' -i "finaldumbways.pem" ec2-user@3.90.102.58 "docker-compose up -d"
           
