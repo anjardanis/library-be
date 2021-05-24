@@ -34,8 +34,9 @@ jobs:
         run: |
           export DOCKER_HUB_USERNAME=$(aws ssm get-parameter --name DOCKER_HUB_USERNAME --with-decryption --query Parameter.Value --output text)
           export DOCKER_HUB_PASSWORD=$(aws ssm get-parameter --name DOCKER_HUB_PASSWORD --with-decryption --query Parameter.Value --output text)
+          export NR_LISENCE_KEY=$(aws ssm get-parameter --name /ula/stage/secret/newrelic/LICENSE_KEY --with-decryption --query Parameter.Value --output text)
           docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
-          docker build --build-arg START_SCRIPT=start --build-arg PORT=5000 -t anjardanis/library-be .
+          docker build --build-arg START_SCRIPT=start --build-arg PORT=5000 --build-arg NR_LICENSE_KEY=$NR_LISENCE_KEY --build-arg NR_APP_NAME=ula-prd-user-management --build-arg NR_ENABLED=true --build-arg NR_DT_ENABLED=true -t anjardanis/library-be .
           docker push anjardanis/library-be
 
       - name: SSH EC2 and Docker Pull
@@ -43,7 +44,7 @@ jobs:
           touch finaldumbways.pem
           aws ssm get-parameter --name /ula/stage/secret/aws/KEY_PAIR --with-decryption --query Parameter.Value --output text > finaldumbways.pem
           chmod 400 finaldumbways.pem
-          ssh -o 'StrictHostKeyChecking no' -i "finaldumbways.pem" ec2-user@3.90.102.58 "cd backend && docker-compose down"
-          ssh -o 'StrictHostKeyChecking no' -i "finaldumbways.pem" ec2-user@3.90.102.58 "docker rmi anjardanis/library-be || true"
-          ssh -o 'StrictHostKeyChecking no' -i "finaldumbways.pem" ec2-user@3.90.102.58 "cd backend && docker-compose up -d"
+          ssh -o 'StrictHostKeyChecking no' -i "finaldumbways.pem" ec2-user@52.45.96.163 "cd backend && docker-compose down"
+          ssh -o 'StrictHostKeyChecking no' -i "finaldumbways.pem" ec2-user@52.45.96.163 "docker rmi anjardanis/library-be || true"
+          ssh -o 'StrictHostKeyChecking no' -i "finaldumbways.pem" ec2-user@52.45.96.163 "cd backend && docker-compose up -d"
           
